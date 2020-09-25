@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+body {
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(to right bottom, #093637, #44A08D);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    background-color: #fff;
+    padding: 1rem;
+    width: 20rem;
+    max-width: 20rem;
+    height: 30rem;
+
+    /*display grid*/
+    display: grid;
+}
