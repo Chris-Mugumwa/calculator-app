@@ -1,35 +1,200 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
 }
 
 html {
-    box-sizing: border-box;
-    line-height: 1.6;
+	box-sizing: border-box;
+	line-height: 1.6;
 }
 
 body {
-    font-size: 62.5%;
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    min-height: 100vh;
-    background: linear-gradient(to right bottom, #093637, #44A08D);
+	font-size: 62.5%;
+	font-family: 'Roboto', sans-serif;
+	height: 100vh;
+	min-height: 100vh;
+	background: linear-gradient(to right bottom, #093637, #44a08d);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.main {
-    background-color: #fff;
-    padding: 1rem;
-    width: 20rem;
-    max-width: 20rem;
-    height: 30rem;
+.container {
+	background-color: #eee;
+	width: 20rem;
+	max-width: 20rem;
+	height: 30rem;
+	padding: 0.2rem;
+	border-radius: 10px;
 
-    /*display grid*/
-    display: grid;
+	/*display grid*/
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 30% repeat(5, 1fr);
+
+	grid-template-areas:
+		'out out out out'
+		'clr clr del div'
+		'one two thre mult'
+		'four five six plus'
+		'pent oct nine subt'
+		'zer pnt equa equa';
+
+	grid-gap: 1.5px;
+}
+
+/* this will house the input numbers and output value */
+
+.output {
+	grid-area: out;
+
+	background-color: rgba(0, 0, 0, 0.802);
+	border-radius: 10px;
+	margin-bottom: 0.2rem;
+	padding: 1rem;
+	color: #fff;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.output > * {
+	text-align: center;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+/* where answer will be displayed */
+
+.top-output {
+	height: 70%;
+	font-size: 1.5rem;
+}
+
+/* where input values will be displayed */
+
+.bottom-output {
+	height: 30%;
+	font-size: 1rem;
+}
+
+
+/** Javascript .class.add classes */
+
+.top-list {
+    display: flex;
+}
+
+.bottom-list {
+    display: flex;
+}
+
+.top-items {
+	color: #eee;
+}
+
+.bottom-items {
+    list-style: none;
+	color: #eee;
+}
+
+/*** Buttons ***/
+
+.button {
+	font-family: 'Roboto';
+	font-weight: 400;
+	font-size: 0.8rem;
+	background-color: #3cb59cdc;
+	border: none;
+	transition: 0.4s;
+	cursor: pointer;
+	outline: none;
+}
+
+.button:hover {
+	background-color: #0c4f41;
+	color: #fff;
+}
+
+.button:active {
+	background-color: #136656;
+}
+
+.button--clear {
+	grid-area: clr;
+}
+
+.button--delete {
+	grid-area: del;
+}
+
+.button--divide {
+	grid-area: div;
+}
+
+.button--1 {
+	grid-area: one;
+}
+
+.button--2 {
+	grid-area: two;
+}
+
+.button--3 {
+	grid-area: thre;
+}
+
+.button--multiply {
+	grid-area: mult;
+}
+
+.button--4 {
+	grid-area: four;
+}
+
+.button--5 {
+	grid-area: five;
+}
+
+.button--6 {
+	grid-area: six;
+}
+
+.button--add {
+	grid-area: plus;
+}
+
+.button--7 {
+	grid-area: pent;
+}
+
+.button--8 {
+	grid-area: oct;
+}
+
+.button--9 {
+	grid-area: nine;
+}
+
+.button--subtract {
+	grid-area: subt;
+}
+
+.button--zero {
+	grid-area: zer;
+}
+
+.button--dot {
+	grid-area: pnt;
+}
+
+.button--equals {
+	grid-area: equa;
 }
