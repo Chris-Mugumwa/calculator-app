@@ -1,49 +1,51 @@
 "use strict";
 
-// Declarations
-var answerDisplay = document.querySelector('.top-output');
-var inputDisplay = document.querySelector('.bottom-output');
-var numButtons = document.querySelectorAll('.button--number');
-var operatorButtons = document.querySelectorAll('.button--operator');
-var deleteButton = document.querySelector('[data-delete]');
-var clearButton = document.querySelector('[data-all-clear]');
-var equalsButton = document.querySelector('[data-equals]'); // event listener
-// numbered buttons
+/* Selectors */
+var container = document.querySelector('.container');
+var buttons = container.querySelector('.buttons');
+var topOutput = container.querySelector('.top-output');
+/* Event Listeners */
 
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
+buttons.addEventListener('click', function (e) {
+  if (!e.target.closest('button')) return;
+  var key = e.target;
+  var keyValue = key.textContent;
+  var topDisplayValue = topOutput.textContent;
+  var type = key.dataset.type;
+  var previousKeyType = container.dataset.previousKeyType; // if button contains number
 
-try {
-  var _loop = function _loop() {
-    var element = _step.value;
-    var newDiv = document.createElement('div');
-    var newItem = document.createElement('li');
-    element.addEventListener('click', function (e) {
-      //new div
-      newDiv.classList.add('top-list');
-      inputDisplay.appendChild(newDiv); // new item
+  if (type === 'number') {
+    if (topDisplayValue === '0') {
+      topOutput.textContent = keyValue;
+    } else if (previousKeyType === 'operator') {
+      topOutput.textContent = keyValue;
+    } else {
+      topOutput.textContent = topDisplayValue + keyValue;
+    }
+  } // if button contains operator
 
-      newItem.innerText = element.value;
-      newItem.classList.add('bottom-items');
-      newDiv.appendChild(newItem);
+
+  if (type === 'operator') {
+    var operatorKeys = buttons.querySelectorAll('[data-type="operator"]');
+    operatorKeys.forEach(function (el) {
+      return el.dataset.state = '';
     });
-  };
+    key.dataset.state = 'selected';
+    container.dataset.firstNumber = topDisplayValue;
+    container.dataset.operator = key.dataset.key;
+  }
 
-  for (var _iterator = numButtons[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    _loop();
+  if (type === 'equals') {
+    var firstNumber = parseInt(container.dataset.firstNumber);
+    var operator = container.dataset.operator;
+    var secondNumber = parseInt(topDisplayValue);
+    var result = '';
+    if (operator === 'plus') result = firstNumber + secondNumber;
+    if (operator === 'minus') result = firstNumber - secondNumber;
+    if (operator === 'times') result = firstNumber * secondNumber;
+    if (operator === 'divide') result = firstNumber / secondNumber;
+    topOutput.textContent = result;
   }
-} catch (err) {
-  _didIteratorError = true;
-  _iteratorError = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-      _iterator["return"]();
-    }
-  } finally {
-    if (_didIteratorError) {
-      throw _iteratorError;
-    }
-  }
-}
+
+  container.dataset.previousKeyType = type;
+});
