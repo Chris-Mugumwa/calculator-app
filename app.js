@@ -2,7 +2,8 @@
 const container = document.querySelector('.container');
 const buttons = container.querySelector('.buttons');
 const topOutput = container.querySelector('.top-output');
-
+const clear = document.querySelector('.button--clear');
+const deleteButton = document.querySelector('.button--delete');
 
 /* Event Listeners */
 
@@ -53,4 +54,9 @@ buttons.addEventListener('click', e => {
     
     container.dataset.previousKeyType = type;
 });
+
+clear.addEventListener('click', event => {
+    topOutput.innerText = '';
+});
+
 
